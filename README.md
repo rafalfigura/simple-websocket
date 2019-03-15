@@ -1,4 +1,4 @@
-## Rabbit messenger ##
+## Simple Websocket ##
 
 ### Install ###
 ```
