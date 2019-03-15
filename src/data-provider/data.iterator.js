@@ -16,8 +16,6 @@ export default class DataIterator {
      */
     getItem() {
         let item = 'no data';
-        console.log(this._currentItem);
-        console.log(this._dataLength);
         if (this._currentItem < this._dataLength) {
             item = this._data[this._currentItem];
 
