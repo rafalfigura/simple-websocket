@@ -37,11 +37,13 @@ export default class WebSocketServer {
      * @param {string} message
      */
     send(message) {
-        this._server.clients.forEach((client) => {
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(message);
-            }
-        });
+        if (this._server.clients.size || process.env.SEND_WHEN_NOT_CONNECTED.toLowerCase() === 'true') {
+            this._server.clients.forEach((client) => {
+                if (client.readyState === WebSocket.OPEN) {
+                    client.send(message);
+                }
+            });
+        }
     }
 
     keepConnection() {
@@ -51,7 +53,8 @@ export default class WebSocketServer {
                     return client.terminate();
                 }
                 client.isAlive = false;
-                client.ping(() => {});
+                client.ping(() => {
+                });
             });
         }, 30000);
     }

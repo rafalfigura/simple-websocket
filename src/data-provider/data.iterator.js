@@ -20,6 +20,8 @@ export default class DataIterator {
             item = this._data[this._currentItem];
 
             this._currentItem++;
+        } else {
+            this._currentItem = 0;
         }
 
         return item;

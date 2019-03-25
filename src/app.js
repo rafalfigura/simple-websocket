@@ -16,3 +16,4 @@ const dataIterator = new DataIterator(new DataProvider(process.env.FILE));
 setInterval(() => {
     webSocket.send(dataIterator.getItem());
 }, parseInt(process.env.SEND_ITERVALL));
+
