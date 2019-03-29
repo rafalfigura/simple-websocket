@@ -37,13 +37,18 @@ export default class WebSocketServer {
      * @param {string} message
      */
     send(message) {
-        if (this._server.clients.size || process.env.SEND_WHEN_NOT_CONNECTED.toLowerCase() === 'true') {
-            this._server.clients.forEach((client) => {
-                if (client.readyState === WebSocket.OPEN) {
-                    client.send(message);
-                }
-            });
-        }
+        this._server.clients.forEach((client) => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(message);
+            }
+        });
+    }
+
+    /**
+     * @return {boolean}
+     */
+    isAnyClientConnected() {
+        return this._server.clients.size > 0 || process.env.SEND_WHEN_NOT_CONNECTED.toLowerCase() === 'true';
     }
 
     keepConnection() {
