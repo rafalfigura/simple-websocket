@@ -20,7 +20,7 @@ export default class DataIterator {
             item = this._data[this._currentItem];
 
             this._currentItem++;
-        } else {
+         } else if(process.env.MESSAGE_INFINIT_LOOP) {
             this._currentItem = 0;
         }
 
